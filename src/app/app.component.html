@@ -1,0 +1,30 @@
+<!-- If user is loaded show the form, else show the loading template -->
+<form [formGroup]="employeeForm" (ngSubmit)="submit()">
+
+  <label for="employeeName">Employee Name</label><br>
+  <div *ngIf="isSubmitted && employeeForm.get('employeeName')?.errors?.['required']">
+    Name is Required<br>
+  </div>
+  <input id="employeeName" formControlName="employeeName" /><br><br>
+  <label for="employeeEmail">Email ID</label><br>
+  <div *ngIf="isSubmitted && employeeForm.get('employeeEmail')?.errors?.['required']">
+    Email is Required<br>
+  </div>
+  <div *ngIf="isSubmitted && employeeForm.get('employeeEmail')?.errors?.['email']
+    && ! employeeForm.get('employeeEmail')?.errors?.['required']">
+    Invalid Email<br>
+  </div>
+  <input id="employeeEmail" formControlName="employeeEmail" AppComponent /><br><br>
+  <label for="employeeZipCode">Zip Code</label><br>
+  <div *ngIf="isSubmitted && employeeForm.get('employeeZipCode')?.errors?.['required']">
+    Zip Code is Required<br>
+  </div>
+  <div *ngIf="isSubmitted && employeeForm.get('employeeZipCode')?.errors?.['pattern']
+  && ! employeeForm.get('employeeZipCode')?.errors?.['required']">
+    Invalid Zipcode<br>
+  </div>
+  <input id="employeeZipCode" formControlName="employeeZipCode" /><br><br>
+  <button>Save</button>
+  <p>{{apiResponse}}</p>
+
+</form>
